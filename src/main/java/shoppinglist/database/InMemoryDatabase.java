@@ -21,9 +21,9 @@ public class InMemoryDatabase implements Database {
     }
 
     @Override
-    public Optional<Product> findProductByTitle(String title) {
+    public Optional<Product> findProductByID(Long id) {
         for (Product product : products) {
-            if (product.getTitle().equals(title)){
+            if (product.getId().equals(id)){
                 return Optional.of(product);
             }
         }

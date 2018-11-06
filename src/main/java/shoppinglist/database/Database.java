@@ -11,7 +11,7 @@ public interface Database {
 
     void removeProduct(Product product);
 
-    Optional<Product> findProductByTitle(String title);
+    Optional<Product> findProductByID(Long id);
 
     List<Product> getAllProducts();
 }

@@ -13,8 +13,8 @@ public class RemoveProductService {
         this.db = db;
     }
 
-    public void execute(String productTitle) {
-        Optional<Product> foundProduct = db.findProductByTitle(productTitle);
+    public void execute(Long productID) {
+        Optional<Product> foundProduct = db.findProductByID(productID);
         if (foundProduct.isPresent()){
             Product product = foundProduct.get();
             db.removeProduct(product);

@@ -1,9 +1,8 @@
 package shoppinglist;
 
-import shoppinglist.database.Database;
-import shoppinglist.database.SQLDatabase;
-import shoppinglist.services.AddProductService;
-import shoppinglist.services.RemoveProductService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import shoppinglist.configs.SpringConfig;
 import shoppinglist.views.AddProductView;
 import shoppinglist.views.PrintProductView;
 import shoppinglist.views.RemoveProductView;
@@ -11,17 +10,14 @@ import shoppinglist.views.MenuView;
 
 public class ShoppingListApp {
 
-    private static Database db = new SQLDatabase();
-
-    private static AddProductService addProductService = new AddProductService(db);
-    private static RemoveProductService removeProductService = new RemoveProductService(db);
-
-    private static MenuView menuView = new MenuView();
-    private static PrintProductView printProductView = new PrintProductView(db);
-    private static AddProductView addProductView = new AddProductView(addProductService);
-    private static RemoveProductView removeProductView = new RemoveProductView(removeProductService);
-
     public static void main(String[] args) {
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+
+        MenuView menuView = applicationContext.getBean(MenuView.class);
+        PrintProductView printProductView = applicationContext.getBean(PrintProductView.class);
+        AddProductView addProductView = applicationContext.getBean(AddProductView.class);
+        RemoveProductView removeProductView = applicationContext.getBean(RemoveProductView.class);
 
         while (true) {
             String menuNumber = menuView.execute();

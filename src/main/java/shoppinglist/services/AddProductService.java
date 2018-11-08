@@ -1,8 +1,10 @@
 package shoppinglist.services;
 
+import org.springframework.stereotype.Component;
 import shoppinglist.database.Database;
 import shoppinglist.domains.Product;
 
+@Component
 public class AddProductService {
 
     private Database db;

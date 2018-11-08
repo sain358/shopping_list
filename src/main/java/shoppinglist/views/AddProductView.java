@@ -1,9 +1,11 @@
 package shoppinglist.views;
 
+import org.springframework.stereotype.Component;
 import shoppinglist.services.AddProductService;
 
 import java.util.Scanner;
 
+@Component
 public class AddProductView implements View {
 
     private AddProductService addProductService;

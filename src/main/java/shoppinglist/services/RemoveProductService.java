@@ -1,10 +1,12 @@
 package shoppinglist.services;
 
+import org.springframework.stereotype.Component;
 import shoppinglist.domains.Product;
 import shoppinglist.database.Database;
 
 import java.util.Optional;
 
+@Component
 public class RemoveProductService {
 
     private Database db;

@@ -1,5 +1,6 @@
 package shoppinglist.database;
 
+import org.springframework.stereotype.Component;
 import shoppinglist.domains.Product;
 
 import java.sql.*;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class SQLDatabase extends JDBCConnection implements Database {
 
     @Override

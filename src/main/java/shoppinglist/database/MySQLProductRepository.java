@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class SQLDatabase extends JDBCConnection implements Database {
+public class MySQLProductRepository extends JDBCConnection implements ProductRepository {
 
     @Override
     public void addProduct(Product product) {

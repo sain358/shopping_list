@@ -28,7 +28,14 @@ public class ShoppingListApp {
             } else if (menuNumber.equals("3")) {
                 removeProductView.execute();
             } else if (menuNumber.equals("4")) {
+                System.out.println("-------------------------");
+                System.out.println("Goodbye!");
+                System.out.println("-------------------------");
                 break;
+            } else {
+                System.out.println("-------------------------");
+                System.out.println("Incorrect data input!");
+                System.out.println("-------------------------");
             }
         }
     }

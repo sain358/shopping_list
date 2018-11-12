@@ -16,9 +16,14 @@ public class RemoveProductView implements View {
 
     @Override
     public void execute() {
+        System.out.println("-------------------------");
         System.out.println("Type the product ID:");
         Scanner scanner = new Scanner(System.in);
         Long productID = scanner.nextLong();
-        removeProductService.execute(productID);
+        System.out.println("-------------------------");
+        if (removeProductService.execute(productID)) {
+            System.out.println("Incorrect ID!");
+            System.out.println("-------------------------");
+        }
     }
 }

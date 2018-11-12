@@ -17,12 +17,16 @@ public class AddProductView implements View {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("-------------------------");
         System.out.println("Type the product title:");
         String productTitle = scanner.nextLine();
         System.out.println("Type the product description:");
         String productDescription = scanner.nextLine();
-        addProductService.execute(productTitle, productDescription);
-
+        System.out.println("-------------------------");
+        if (addProductService.execute(productTitle, productDescription)) {
+            System.out.println("Incorrect data input!");
+            System.out.println("-------------------------");
+        }
     }
 
 }

@@ -2,24 +2,26 @@ package shoppinglist.services;
 
 import org.springframework.stereotype.Component;
 import shoppinglist.domains.Product;
-import shoppinglist.database.Database;
+import shoppinglist.database.ProductRepository;
 
 import java.util.Optional;
 
 @Component
 public class RemoveProductService {
 
-    private Database db;
+    private ProductRepository db;
 
-    public RemoveProductService(Database db) {
+    public RemoveProductService(ProductRepository db) {
         this.db = db;
     }
 
-    public void execute(Long productID) {
+    public boolean execute(Long productID) {
+        boolean isNotCorrectData = false;
         Optional<Product> foundProduct = db.findProductByID(productID);
-        if (foundProduct.isPresent()){
+        if (foundProduct.isPresent()) {
             Product product = foundProduct.get();
             db.removeProduct(product);
-        }
+        } else isNotCorrectData = true;
+        return isNotCorrectData;
     }
 }

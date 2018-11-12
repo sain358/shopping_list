@@ -1,20 +1,21 @@
 package shoppinglist.views;
 
 import org.springframework.stereotype.Component;
-import shoppinglist.database.Database;
+import shoppinglist.database.ProductRepository;
 import shoppinglist.domains.Product;
 
 @Component
 public class PrintProductView implements View {
 
-    private Database db;
+    private ProductRepository db;
 
-    public PrintProductView(Database db) {
+    public PrintProductView(ProductRepository db) {
         this.db = db;
     }
 
     @Override
     public void execute() {
+        System.out.println("-------------------------");
         System.out.println("This is Your shopping list:");
         for (Product product : db.getAllProducts()) {
             System.out.println(
@@ -23,7 +24,7 @@ public class PrintProductView implements View {
                             "; Description: " + product.getDescription()
             );
         }
-        System.out.println();
+        System.out.println("-------------------------");
     }
 
 }

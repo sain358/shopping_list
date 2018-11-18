@@ -11,7 +11,7 @@ public interface ProductRepository {
 
     void removeProduct(Product product);
 
-    Optional<Product> findProductByID(Long id);
+    Optional<Product> findProductByTitle(String title);
 
     List<Product> getAllProducts();
 }

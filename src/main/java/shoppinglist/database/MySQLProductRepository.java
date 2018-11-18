@@ -43,12 +43,12 @@ public class MySQLProductRepository extends JDBCConnection implements ProductRep
     }
 
     @Override
-    public Optional<Product> findProductByID(Long id) {
+    public Optional<Product> findProductByTitle(String title) {
         Connection connection = getConnection();
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("select * from products where id = ?");
-            preparedStatement.setLong(1, id);
+                    connection.prepareStatement("select * from products where title = ?");
+            preparedStatement.setString(1, title);
             ResultSet resultSet = preparedStatement.executeQuery();
             Product product = null;
             if (resultSet.next()) {

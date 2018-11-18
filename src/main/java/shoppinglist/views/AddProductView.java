@@ -1,18 +1,20 @@
 package shoppinglist.views;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import shoppinglist.services.AddProductService;
+import shoppinglist.services.add.AddProductRequest;
+import shoppinglist.services.add.AddProductResponse;
+import shoppinglist.services.add.AddProductService;
+import shoppinglist.services.Error;
 
+import java.util.List;
 import java.util.Scanner;
 
 @Component
 public class AddProductView implements View {
 
+    @Autowired
     private AddProductService addProductService;
-
-    public AddProductView(AddProductService addProductService) {
-        this.addProductService = addProductService;
-    }
 
     @Override
     public void execute() {
@@ -23,10 +25,21 @@ public class AddProductView implements View {
         System.out.println("Type the product description:");
         String productDescription = scanner.nextLine();
         System.out.println("-------------------------");
-        if (addProductService.execute(productTitle, productDescription)) {
-            System.out.println("Incorrect data input!");
-            System.out.println("-------------------------");
+
+        AddProductRequest addProductRequest = new AddProductRequest(productTitle, productDescription);
+        AddProductResponse addProductResponse = addProductService.execute(addProductRequest);
+
+        List<Error> errors = addProductResponse.getErrors();
+        if (!errors.isEmpty()) {
+            printErrors(errors);
         }
+    }
+
+    private void printErrors(List<Error> errors) {
+        for (Error error : errors) {
+            System.out.println(error.getDescription());
+        }
+        System.out.println("-------------------------");
     }
 
 }

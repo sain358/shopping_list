@@ -21,9 +21,9 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findProductByID(Long id) {
+    public Optional<Product> findProductByTitle(String title) {
         for (Product product : products) {
-            if (product.getId().equals(id)){
+            if (product.getTitle().equals(title)){
                 return Optional.of(product);
             }
         }

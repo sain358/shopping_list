@@ -8,11 +8,11 @@ import shoppinglist.services.Error;
 import java.util.Optional;
 
 @Component
-public class DuplicateProductTitleRule {
+public class TheSameProductTitleRule {
 
     private ProductRepository repository;
 
-    public DuplicateProductTitleRule(ProductRepository repository) {
+    public TheSameProductTitleRule(ProductRepository repository) {
         this.repository = repository;
     }
 

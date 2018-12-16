@@ -1,10 +1,10 @@
 package shoppinglist.views;
 
 import org.springframework.stereotype.Component;
-import shoppinglist.services.Error;
-import shoppinglist.services.remove.RemoveProductRequest;
-import shoppinglist.services.remove.RemoveProductResponse;
-import shoppinglist.services.remove.RemoveProductService;
+import shoppinglist.services.ShoppingListError;
+import shoppinglist.services.products.remove.RemoveProductRequest;
+import shoppinglist.services.products.remove.RemoveProductResponse;
+import shoppinglist.services.products.remove.RemoveProductService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -29,15 +29,15 @@ public class RemoveProductView implements View {
         RemoveProductRequest removeProductRequest = new RemoveProductRequest(title);
         RemoveProductResponse removeProductResponse = removeProductService.execute(removeProductRequest);
 
-        List<Error> errors = removeProductResponse.getErrors();
-        if (!errors.isEmpty()) {
-            printErrors(errors);
+        List<ShoppingListError> shoppingListErrors = removeProductResponse.getShoppingListErrors();
+        if (!shoppingListErrors.isEmpty()) {
+            printErrors(shoppingListErrors);
         }
     }
 
-    private void printErrors(List<Error> errors) {
-        for (Error error : errors) {
-            System.out.println(error.getDescription());
+    private void printErrors(List<ShoppingListError> shoppingListErrors) {
+        for (ShoppingListError shoppingListError : shoppingListErrors) {
+            System.out.println(shoppingListError.getDescription());
         }
         System.out.println("-------------------------");
     }

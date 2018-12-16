@@ -2,10 +2,10 @@ package shoppinglist.views;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import shoppinglist.services.add.AddProductRequest;
-import shoppinglist.services.add.AddProductResponse;
-import shoppinglist.services.add.AddProductService;
-import shoppinglist.services.Error;
+import shoppinglist.services.products.add.AddProductRequest;
+import shoppinglist.services.products.add.AddProductResponse;
+import shoppinglist.services.products.add.AddProductService;
+import shoppinglist.services.ShoppingListError;
 
 import java.util.List;
 import java.util.Scanner;
@@ -29,15 +29,15 @@ public class AddProductView implements View {
         AddProductRequest addProductRequest = new AddProductRequest(productTitle, productDescription);
         AddProductResponse addProductResponse = addProductService.execute(addProductRequest);
 
-        List<Error> errors = addProductResponse.getErrors();
-        if (!errors.isEmpty()) {
-            printErrors(errors);
+        List<ShoppingListError> shoppingListErrors = addProductResponse.getShoppingListErrors();
+        if (!shoppingListErrors.isEmpty()) {
+            printErrors(shoppingListErrors);
         }
     }
 
-    private void printErrors(List<Error> errors) {
-        for (Error error : errors) {
-            System.out.println(error.getDescription());
+    private void printErrors(List<ShoppingListError> shoppingListErrors) {
+        for (ShoppingListError shoppingListError : shoppingListErrors) {
+            System.out.println(shoppingListError.getDescription());
         }
         System.out.println("-------------------------");
     }

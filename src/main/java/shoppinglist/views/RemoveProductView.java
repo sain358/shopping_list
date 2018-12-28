@@ -35,7 +35,8 @@ public class RemoveProductView implements View {
         }
     }
 
-    private void printErrors(List<ShoppingListError> shoppingListErrors) {
+    @Override
+    public void printErrors(List<ShoppingListError> shoppingListErrors) {
         for (ShoppingListError shoppingListError : shoppingListErrors) {
             System.out.println(shoppingListError.getDescription());
         }

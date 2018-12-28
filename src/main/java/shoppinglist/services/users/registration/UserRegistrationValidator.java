@@ -23,6 +23,7 @@ class UserRegistrationValidator {
         validateLogin(request.getLogin()).ifPresent(errors::add);
         validateDuplicateLogin(request.getLogin()).ifPresent(errors::add);
         validatePassword(request.getPassword()).ifPresent(errors::add);
+        validateRepeatedPassword(request.getPassword(), request.getRepeatedPassword()).ifPresent(errors::add);
         return errors;
     }
 
@@ -41,6 +42,14 @@ class UserRegistrationValidator {
         Matcher matcher = pattern.matcher(password);
         if (matcher.find()) {
             return Optional.of(new ShoppingListError("password", "Empty password not allowed!"));
+        }
+        return Optional.empty();
+
+    }
+
+    private Optional<ShoppingListError> validateRepeatedPassword(String password, String repeatedPassword) {
+        if (!password.equals(repeatedPassword)) {
+            return Optional.of(new ShoppingListError("repeatedPassword", "Incorrect repeated password!"));
         }
         return Optional.empty();
 

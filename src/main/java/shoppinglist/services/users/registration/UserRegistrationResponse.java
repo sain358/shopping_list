@@ -1,33 +1,29 @@
 package shoppinglist.services.users.registration;
 
+import shoppinglist.domains.User;
 import shoppinglist.services.ShoppingListError;
 
 import java.util.List;
 
 public class UserRegistrationResponse {
 
-    private Long userId;
-    private List<ShoppingListError> errors;
+    private User user;
+    private List<ShoppingListError> shoppingListErrors;
 
-    public UserRegistrationResponse(Long userId) {
-        this.userId = userId;
+    public UserRegistrationResponse(User user) {
+        this.user = user;
     }
 
-    public UserRegistrationResponse(List<ShoppingListError> errors) {
-        this.errors = errors;
+    public UserRegistrationResponse(List<ShoppingListError> shoppingListErrors) {
+        this.shoppingListErrors = shoppingListErrors;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public List<ShoppingListError> getErrors() {
-        return errors;
-    }
-
-    public boolean isSuccess() {
-        return userId != null
-                && (errors == null || errors.isEmpty()) ;
+    public List<ShoppingListError> getShoppingListErrors() {
+        return shoppingListErrors;
     }
 
 }

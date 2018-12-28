@@ -8,6 +8,7 @@ import shoppinglist.database.ShoppingListRepository;
 import shoppinglist.domains.ShoppingList;
 import shoppinglist.domains.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -21,6 +22,13 @@ class ShoppingListRepositoryImpl implements ShoppingListRepository {
     public void save(ShoppingList shoppingList) {
         sessionFactory.getCurrentSession().save(shoppingList);
     }
+
+    @Override
+    public void remove(ShoppingList shoppingList) {
+        sessionFactory.getCurrentSession().
+                delete(shoppingList);
+    }
+
 
     @Override
     public Optional<ShoppingList> findByUserAndTitle(User user, String title) {

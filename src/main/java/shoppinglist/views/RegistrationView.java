@@ -1,20 +1,18 @@
 package shoppinglist.views;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import shoppinglist.services.ShoppingListError;
-import shoppinglist.services.users.get.GetUserRequest;
-import shoppinglist.services.users.get.GetUserResponse;
-import shoppinglist.services.users.get.GetUserService;
+import shoppinglist.services.users.registration.UserRegistrationRequest;
+import shoppinglist.services.users.registration.UserRegistrationResponse;
+import shoppinglist.services.users.registration.UserRegistrationService;
 
 import java.util.List;
 import java.util.Scanner;
 
 @Component
-public class loginView implements View {
+public class RegistrationView implements View{
 
-    @Autowired
-    private GetUserService getUserService;
+    private UserRegistrationService userRegistrationService;
 
     @Override
     public void execute() {
@@ -22,16 +20,18 @@ public class loginView implements View {
         System.out.println("Enter LOGIN: ");
         String login = scanner.nextLine();
         System.out.println("Enter PASSWORD: ");
-        String password = scanner.nextLine();
+        String password1 = scanner.nextLine();
+        System.out.println("Repeat PASSWORD: ");
+        String password2 = scanner.nextLine();
 
-        GetUserRequest getUserRequest = new GetUserRequest(login, password);
-        GetUserResponse getUserResponse = getUserService.execute(getUserRequest);
+        UserRegistrationRequest userRegistrationRequest = new UserRegistrationRequest(login, password1, password2);
+        UserRegistrationResponse userRegistrationResponse = userRegistrationService.execute(userRegistrationRequest);
 
-        List<ShoppingListError> shoppingListErrors = getUserResponse.getShoppingListErrors();
+        List<ShoppingListError> shoppingListErrors = userRegistrationResponse.getShoppingListErrors();
         if (!shoppingListErrors.isEmpty()) {
             printErrors(shoppingListErrors);
         } else {
-            //idem v bazu dlja polu4enija spiska vseh Shopoing listov Usera
+
         }
 
     }

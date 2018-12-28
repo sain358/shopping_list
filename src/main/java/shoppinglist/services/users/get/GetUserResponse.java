@@ -9,7 +9,6 @@ import java.util.List;
 public class GetUserResponse {
 
     private User user;
-
     private List<ShoppingListError> shoppingListErrors;
 
     public GetUserResponse(User user) {
@@ -26,10 +25,6 @@ public class GetUserResponse {
 
     public List<ShoppingListError> getShoppingListErrors() {
         return shoppingListErrors;
-    }
-
-    public boolean isSuccess() {
-        return user != null && (shoppingListErrors.isEmpty());
     }
 
 }

@@ -4,10 +4,12 @@ public class UserRegistrationRequest {
 
     private String login;
     private String password;
+    private String repeatedPassword;
 
-    public UserRegistrationRequest(String login, String password) {
+    public UserRegistrationRequest(String login, String password, String repeatedPassword) {
         this.login = login;
         this.password = password;
+        this.repeatedPassword = repeatedPassword;
     }
 
     public String getLogin() {
@@ -26,4 +28,11 @@ public class UserRegistrationRequest {
         this.password = password;
     }
 
+    public String getRepeatedPassword() {
+        return repeatedPassword;
+    }
+
+    public void setRepeatedPassword(String repeatedPassword) {
+        this.repeatedPassword = repeatedPassword;
+    }
 }

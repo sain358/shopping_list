@@ -11,14 +11,14 @@ import java.util.List;
 
 @Component
 @Transactional
-class UserRegistrationService {
+public class UserRegistrationService {
 
     @Autowired
     private UserRegistrationValidator validator;
     @Autowired
     private UserRepository userRepository;
 
-    public UserRegistrationResponse register(UserRegistrationRequest request) {
+    public UserRegistrationResponse execute(UserRegistrationRequest request) {
 
         List<ShoppingListError> validationErrors = validator.validate(request);
         if (!validationErrors.isEmpty()) {
@@ -30,7 +30,7 @@ class UserRegistrationService {
         user.setPassword(request.getPassword());
         userRepository.save(user);
 
-        return new UserRegistrationResponse(user.getId());
+        return new UserRegistrationResponse(user);
     }
 
 }

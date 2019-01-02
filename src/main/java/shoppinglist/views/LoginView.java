@@ -2,22 +2,23 @@ package shoppinglist.views;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import shoppinglist.domains.User;
 import shoppinglist.services.ShoppingListError;
 import shoppinglist.services.users.get.GetUserRequest;
 import shoppinglist.services.users.get.GetUserResponse;
 import shoppinglist.services.users.get.GetUserService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 @Component
-public class loginView implements View {
+public class LoginView {
 
     @Autowired
     private GetUserService getUserService;
 
-    @Override
-    public void execute() {
+    public Optional<User> execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter LOGIN: ");
         String login = scanner.nextLine();
@@ -30,13 +31,11 @@ public class loginView implements View {
         List<ShoppingListError> shoppingListErrors = getUserResponse.getShoppingListErrors();
         if (!shoppingListErrors.isEmpty()) {
             printErrors(shoppingListErrors);
-        } else {
-            //idem v bazu dlja polu4enija spiska vseh Shopoing listov Usera
         }
 
+        return Optional.ofNullable(getUserResponse.getUser());
     }
 
-    @Override
     public void printErrors(List<ShoppingListError> shoppingListErrors) {
         for (ShoppingListError shoppingListError : shoppingListErrors) {
             System.out.println(shoppingListError.getDescription());

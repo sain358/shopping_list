@@ -31,9 +31,7 @@ class UserRepositoryImpl implements UserRepository {
                 .setParameter("login", login)
                 .setParameter("password", password)
                 .uniqueResult();
-
-
-        return Optional.empty();
+        return Optional.ofNullable(user);
     }
 
     @Override

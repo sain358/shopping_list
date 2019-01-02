@@ -15,14 +15,18 @@ public class UserRegistrationService {
 
     @Autowired
     private UserRegistrationValidator validator;
+
     @Autowired
     private UserRepository userRepository;
 
     public UserRegistrationResponse execute(UserRegistrationRequest request) {
 
+        UserRegistrationResponse response = new UserRegistrationResponse();
+
         List<ShoppingListError> validationErrors = validator.validate(request);
+        response.setShoppingListErrors(validationErrors);
         if (!validationErrors.isEmpty()) {
-            return new UserRegistrationResponse(validationErrors);
+            return response;
         }
 
         User user = new User();
@@ -30,7 +34,8 @@ public class UserRegistrationService {
         user.setPassword(request.getPassword());
         userRepository.save(user);
 
-        return new UserRegistrationResponse(user);
+        response.setUser(user);
+        return response;
     }
 
 }

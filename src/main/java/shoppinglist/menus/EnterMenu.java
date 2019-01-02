@@ -7,6 +7,7 @@ import java.util.Scanner;
 @Component
 public class EnterMenu implements Menu{
 
+    @Override
     public String execute() {
         System.out.println("What do You want to do?");
         System.out.println("1. Log In");

@@ -22,9 +22,12 @@ public class GetShoppinglistService {
 
     public GetShoppingListResponse execute (GetShoppingListRequest request){
 
+        GetShoppingListResponse response = new GetShoppingListResponse();
+
         List<ShoppingListError> shoppingListErrors = validator.validate(request);
+        response.setShoppingListErrors(shoppingListErrors);
         if (!shoppingListErrors.isEmpty()) {
-            return new GetShoppingListResponse(shoppingListErrors);
+            return response;
         }
 
         Optional<ShoppingList> shoppingListOptional = shoppingListRepository.findByUserAndTitle(request.getUser(), request.getTitle());
@@ -32,7 +35,9 @@ public class GetShoppinglistService {
         if (shoppingListOptional.isPresent()) {
             shoppingList = shoppingListOptional.get();
         }
-        return new GetShoppingListResponse(shoppingList);
+
+        response.setShoppingList(shoppingList);
+        return response;
 
     }
 

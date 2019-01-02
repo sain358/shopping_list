@@ -10,13 +10,6 @@ public class UserRegistrationResponse {
     private User user;
     private List<ShoppingListError> shoppingListErrors;
 
-    public UserRegistrationResponse(User user) {
-        this.user = user;
-    }
-
-    public UserRegistrationResponse(List<ShoppingListError> shoppingListErrors) {
-        this.shoppingListErrors = shoppingListErrors;
-    }
 
     public User getUser() {
         return user;
@@ -26,4 +19,11 @@ public class UserRegistrationResponse {
         return shoppingListErrors;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setShoppingListErrors(List<ShoppingListError> shoppingListErrors) {
+        this.shoppingListErrors = shoppingListErrors;
+    }
 }

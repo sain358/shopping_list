@@ -22,9 +22,12 @@ public class GetUserService {
 
     public GetUserResponse execute(GetUserRequest request) {
 
+        GetUserResponse response = new GetUserResponse();
+
         List<ShoppingListError> shoppingListErrors = validator.validate(request);
+        response.setShoppingListErrors(shoppingListErrors);
         if (!shoppingListErrors.isEmpty()) {
-            return new GetUserResponse(shoppingListErrors);
+            return response;
         }
 
         Optional<User> userOptional = userRepository.findByLoginAndPassword(request.getLogin(), request.getPassword());
@@ -32,8 +35,9 @@ public class GetUserService {
         if (userOptional.isPresent()) {
             user = userOptional.get();
         }
-        return new GetUserResponse(user);
 
+        response.setUser(user);
+        return response;
     }
 
 }

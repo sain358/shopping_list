@@ -11,13 +11,6 @@ public class GetUserResponse {
     private User user;
     private List<ShoppingListError> shoppingListErrors;
 
-    public GetUserResponse(User user) {
-        this.user = user;
-    }
-
-    public GetUserResponse(List<ShoppingListError> shoppingListErrors) {
-        this.shoppingListErrors = shoppingListErrors;
-    }
 
     public User getUser() {
         return user;
@@ -27,4 +20,11 @@ public class GetUserResponse {
         return shoppingListErrors;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setShoppingListErrors(List<ShoppingListError> shoppingListErrors) {
+        this.shoppingListErrors = shoppingListErrors;
+    }
 }

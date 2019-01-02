@@ -21,9 +21,12 @@ public class AddShoppingListService {
 
     public AddShoppingListResponse execute (AddShoppingListRequest request){
 
+        AddShoppingListResponse response = new AddShoppingListResponse();
+
         List<ShoppingListError> shoppingListErrors = validator.validate(request);
+        response.setShoppingListErrors(shoppingListErrors);
         if (!shoppingListErrors.isEmpty()) {
-            return new AddShoppingListResponse(shoppingListErrors);
+            return response;
         }
 
         ShoppingList shoppingList = new ShoppingList();
@@ -31,6 +34,7 @@ public class AddShoppingListService {
         shoppingList.setTitle(request.getTitle());
         shoppingListRepository.save(shoppingList);
 
-        return new AddShoppingListResponse(shoppingList);
+        response.setShoppingList(shoppingList);
+        return response;
     }
 }

@@ -14,8 +14,8 @@ public class PrintProductView implements View {
 
     private GetAllProductsService getAllProductsService;
 
-    public PrintProductView(GetAllProductsService getShoppingListService) {
-        this.getAllProductsService = getShoppingListService;
+    public PrintProductView(GetAllProductsService getAllProductsService) {
+        this.getAllProductsService = getAllProductsService;
     }
 
     @Override

@@ -1,21 +1,24 @@
 package shoppinglist.views;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import shoppinglist.domains.User;
 import shoppinglist.services.ShoppingListError;
 import shoppinglist.services.users.registration.UserRegistrationRequest;
 import shoppinglist.services.users.registration.UserRegistrationResponse;
 import shoppinglist.services.users.registration.UserRegistrationService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 @Component
-public class RegistrationView implements View{
+public class RegistrationView {
 
+    @Autowired
     private UserRegistrationService userRegistrationService;
 
-    @Override
-    public void execute() {
+    public Optional<User> execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter LOGIN: ");
         String login = scanner.nextLine();
@@ -30,13 +33,11 @@ public class RegistrationView implements View{
         List<ShoppingListError> shoppingListErrors = userRegistrationResponse.getShoppingListErrors();
         if (!shoppingListErrors.isEmpty()) {
             printErrors(shoppingListErrors);
-        } else {
-
         }
 
+        return Optional.ofNullable(userRegistrationResponse.getUser());
     }
 
-    @Override
     public void printErrors(List<ShoppingListError> shoppingListErrors) {
         for (ShoppingListError shoppingListError : shoppingListErrors) {
             System.out.println(shoppingListError.getDescription());

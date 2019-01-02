@@ -10,13 +10,6 @@ public class AddShoppingListResponse {
     private ShoppingList shoppingList;
     private List<ShoppingListError> shoppingListErrors;
 
-    public AddShoppingListResponse(ShoppingList shoppingList) {
-        this.shoppingList = shoppingList;
-    }
-
-    public AddShoppingListResponse(List<ShoppingListError> shoppingListErrors) {
-        this.shoppingListErrors = shoppingListErrors;
-    }
 
     public ShoppingList getShoppingList() {
         return shoppingList;
@@ -24,5 +17,13 @@ public class AddShoppingListResponse {
 
     public List<ShoppingListError> getShoppingListErrors() {
         return shoppingListErrors;
+    }
+
+    public void setShoppingList(ShoppingList shoppingList) {
+        this.shoppingList = shoppingList;
+    }
+
+    public void setShoppingListErrors(List<ShoppingListError> shoppingListErrors) {
+        this.shoppingListErrors = shoppingListErrors;
     }
 }

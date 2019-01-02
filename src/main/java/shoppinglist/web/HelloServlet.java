@@ -1,19 +1,11 @@
 package shoppinglist.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import shoppinglist.domains.Product;
-import shoppinglist.services.ShoppingListError;
-import shoppinglist.services.products.get.GetAllProductsRequest;
-import shoppinglist.services.products.get.GetAllProductsResponse;
-import shoppinglist.services.products.get.GetAllProductsService;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 public class HelloServlet extends HttpServlet {
 

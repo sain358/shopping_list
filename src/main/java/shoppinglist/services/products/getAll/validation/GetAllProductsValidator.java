@@ -1,9 +1,9 @@
-package shoppinglist.services.products.get.validation;
+package shoppinglist.services.products.getAll.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import shoppinglist.services.ShoppingListError;
-import shoppinglist.services.products.get.GetAllProductsRequest;
+import shoppinglist.services.products.getAll.GetAllProductsRequest;
 
 import java.util.ArrayList;
 import java.util.List;

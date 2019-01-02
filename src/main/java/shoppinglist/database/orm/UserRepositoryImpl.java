@@ -25,14 +25,6 @@ class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<ShoppingList> findShoppingLists(User user) {
-        String query = "from ShoppingList sl where sl.user = :user";
-        return sessionFactory.getCurrentSession().createQuery(query)
-                .setParameter("user", user)
-                .list();
-    }
-
-    @Override
     public Optional<User> findByLoginAndPassword(String login, String password) {
         String query = "from User u where u.login = :login and u.password = :password";
         User user = (User) sessionFactory.getCurrentSession().createQuery(query)

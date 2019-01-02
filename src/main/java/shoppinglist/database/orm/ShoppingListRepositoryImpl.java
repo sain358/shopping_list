@@ -40,4 +40,13 @@ class ShoppingListRepositoryImpl implements ShoppingListRepository {
         return Optional.ofNullable(shoppingList);
     }
 
+    @Override
+    public List<ShoppingList> findShoppingLists(User user) {
+        String query = "from ShoppingList sl where sl.user = :user";
+        return sessionFactory.getCurrentSession().createQuery(query)
+                .setParameter("user", user)
+                .list();
+    }
+
+
 }

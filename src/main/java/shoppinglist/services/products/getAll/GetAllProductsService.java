@@ -1,4 +1,4 @@
-package shoppinglist.services.products.get;
+package shoppinglist.services.products.getAll;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import shoppinglist.database.ProductRepository;
 import shoppinglist.domains.Product;
 import shoppinglist.services.ShoppingListError;
-import shoppinglist.services.products.get.validation.GetAllProductsValidator;
+import shoppinglist.services.products.getAll.validation.GetAllProductsValidator;
 
 import java.util.List;
 

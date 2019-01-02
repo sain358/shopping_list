@@ -10,8 +10,6 @@ public interface UserRepository {
 
     void save(User user);
 
-    List<ShoppingList> findShoppingLists(User user);
-
     Optional<User> findByLoginAndPassword(String login, String password);
 
     Optional<User> findByLogin(String login);

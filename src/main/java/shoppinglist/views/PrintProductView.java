@@ -3,9 +3,9 @@ package shoppinglist.views;
 import org.springframework.stereotype.Component;
 import shoppinglist.domains.Product;
 import shoppinglist.services.ShoppingListError;
-import shoppinglist.services.products.get.GetAllProductsRequest;
-import shoppinglist.services.products.get.GetAllProductsResponse;
-import shoppinglist.services.products.get.GetAllProductsService;
+import shoppinglist.services.products.getAll.GetAllProductsRequest;
+import shoppinglist.services.products.getAll.GetAllProductsResponse;
+import shoppinglist.services.products.getAll.GetAllProductsService;
 
 import java.util.List;
 

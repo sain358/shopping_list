@@ -14,5 +14,6 @@ public interface ShoppingListRepository {
 
     Optional<ShoppingList> findByUserAndTitle(User user, String title);
 
+    List<ShoppingList> findShoppingLists(User user);
 
 }

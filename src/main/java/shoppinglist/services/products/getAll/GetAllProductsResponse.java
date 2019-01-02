@@ -1,4 +1,4 @@
-package shoppinglist.services.products.get;
+package shoppinglist.services.products.getAll;
 
 import shoppinglist.domains.Product;
 import shoppinglist.services.ShoppingListError;

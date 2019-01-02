@@ -1,4 +1,4 @@
-package shoppinglist.services.products.get.validation;
+package shoppinglist.services.products.getAll.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

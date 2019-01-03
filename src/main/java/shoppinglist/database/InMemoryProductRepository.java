@@ -1,6 +1,7 @@
 package shoppinglist.database;
 
 import shoppinglist.domains.Product;
+import shoppinglist.domains.ShoppingList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProducts(ShoppingList shoppingList) {
         return new ArrayList<>(products);
     }
 }

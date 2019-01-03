@@ -8,6 +8,7 @@ import shoppinglist.domains.ShoppingList;
 import shoppinglist.services.ShoppingListError;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -26,9 +27,12 @@ public class RemoveShoppingListService {
             return new RemoveShoppingListResponse(shoppingListErrors);
         }
 
+        Optional<ShoppingList> shoppingListOptional =
+                shoppingListRepository.findByUserAndTitle(request.getUser(), request.getTitle());
         ShoppingList shoppingList = new ShoppingList();
-        shoppingList.setUser(request.getUser());
-        shoppingList.setTitle(request.getTitle());
+        if (shoppingListOptional.isPresent()) {
+            shoppingList = shoppingListOptional.get();
+        }
         shoppingListRepository.remove(shoppingList);
         return new RemoveShoppingListResponse(shoppingListErrors);
 

@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import shoppinglist.domains.ShoppingList;
 import shoppinglist.services.ShoppingListError;
 import shoppinglist.services.products.add.AddProductRequest;
 
@@ -20,9 +21,6 @@ public class AddProductValidatorTest {
     @Mock
     private EmptyTitleRule emptyTitleRule;
 
-    @Mock
-    private TheSameProductTitleRule theSameProductTitleRule;
-
     @InjectMocks
     private AddProductValidator validator = new AddProductValidator();
 
@@ -30,11 +28,9 @@ public class AddProductValidatorTest {
     public void mustReturnListOfErrorsIfThereIsSomeError() {
         Mockito.when(emptyTitleRule.execute("someTitle")).
                 thenReturn(Optional.empty());
-        Mockito.when(theSameProductTitleRule.execute("someTitle")).
-                thenReturn(Optional.empty());
 
         List<ShoppingListError> shoppingListErrors = validator.validate(
-                new AddProductRequest("someTitle", "someDescription"));
+                new AddProductRequest("someTitle", "someDescription", 1, new ShoppingList()));
 
         assertEquals(0, shoppingListErrors.size());
     }
@@ -43,11 +39,9 @@ public class AddProductValidatorTest {
     public void mustReturnEmptyListOfErrorsIfThereNoAnyError() {
         Mockito.when(emptyTitleRule.execute("someTitle")).
                 thenReturn(Optional.of(new ShoppingListError("someTitle","someDescription")));
-        Mockito.when(theSameProductTitleRule.execute("someTitle")).
-                thenReturn(Optional.of(new ShoppingListError("someTitle","someDescription")));
 
         List<ShoppingListError> shoppingListErrors = validator.validate(
-                new AddProductRequest("someTitle", "someDescription"));
+                new AddProductRequest("someTitle", "someDescription", 1, new ShoppingList()));
 
         assertEquals(2, shoppingListErrors.size());
     }

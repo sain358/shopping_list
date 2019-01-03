@@ -3,6 +3,8 @@ package shoppinglist;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import shoppinglist.configs.SpringConfig;
+import shoppinglist.domains.ShoppingList;
+import shoppinglist.domains.User;
 import shoppinglist.views.AddProductView;
 import shoppinglist.views.PrintProductView;
 import shoppinglist.views.RemoveProductView;
@@ -11,6 +13,15 @@ import shoppinglist.menus.ShoppingListMenu;
 public class ShoppingListApp {
 
     public static void main(String[] args) {
+
+        User user = new User();
+        user.setLogin("me");
+        user.setPassword("123");
+
+        ShoppingList shoppingList = new ShoppingList();
+        shoppingList.setTitle("myList");
+        shoppingList.setUser(user);
+        shoppingList.setId((long) 1001);
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
 
@@ -22,9 +33,9 @@ public class ShoppingListApp {
         while (true) {
             String menuNumber = shoppingListMenu.execute();
             if (menuNumber.equals("1")) {
-                printProductView.execute();
+                printProductView.execute(shoppingList);
             } else if (menuNumber.equals("2")) {
-                addProductView.execute();
+                addProductView.execute(shoppingList);
             } else if (menuNumber.equals("3")) {
                 removeProductView.execute();
             } else if (menuNumber.equals("4")) {

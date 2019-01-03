@@ -14,15 +14,10 @@ public class AddProductValidator {
     @Autowired
     private EmptyTitleRule emptyTitleRule;
 
-    @Autowired
-    private TheSameProductTitleRule theSameProductTitleRule;
-
     public List<ShoppingListError> validate(AddProductRequest addProductRequest) {
         List<ShoppingListError> shoppingListErrors = new ArrayList<>();
 
         emptyTitleRule.execute(addProductRequest.getProductTitle()).ifPresent(shoppingListErrors::add);
-
-        theSameProductTitleRule.execute(addProductRequest.getProductTitle()).ifPresent(shoppingListErrors::add);
 
         return shoppingListErrors;
     }

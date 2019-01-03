@@ -14,10 +14,10 @@ public class GetAllProductsValidator {
     @Autowired
     private EmptyShoppingListRule emptyShoppingListRule;
 
-    public List<ShoppingListError> validate(GetAllProductsRequest getAllProductsRequest) {
+    public List<ShoppingListError> validate(GetAllProductsRequest request) {
         List<ShoppingListError> shoppingListErrors = new ArrayList<>();
 
-        emptyShoppingListRule.execute().ifPresent(shoppingListErrors::add);
+        emptyShoppingListRule.execute(request.getShoppingList()).ifPresent(shoppingListErrors::add);
 
         return shoppingListErrors;
     }

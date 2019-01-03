@@ -25,8 +25,7 @@ class ShoppingListRepositoryImpl implements ShoppingListRepository {
 
     @Override
     public void remove(ShoppingList shoppingList) {
-        sessionFactory.getCurrentSession().
-                delete(shoppingList);
+        sessionFactory.getCurrentSession().delete(shoppingList);
     }
 
 

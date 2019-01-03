@@ -10,36 +10,20 @@ CREATE TABLE IF NOT EXISTS `products` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(32) NOT NULL,
   `description` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id`)
-)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1001;
-------------------------------------------------------------------------
-------------------------------------------------------------------------
-DROP TABLE IF EXISTS `shopping_list_items`;
-CREATE TABLE IF NOT EXISTS `shopping_list_items` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `shopping_list_id` BIGINT NOT NULL,
-  `product_id` BIGINT NOT NULL,
   `quantity` INT NOT NULL,
+  `shopping_list_id` BIGINT NOT NULL,
+
   PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1001;
 
-ALTER TABLE `shopping_list_items`
-ADD CONSTRAINT `fk_shopping_list_items_shopping_list_id`
+ALTER TABLE `products`
+ADD CONSTRAINT `fk_products_shopping_list_id`
 FOREIGN KEY (`shopping_list_id`) REFERENCES `shopping_lists`(`id`);
 
-ALTER TABLE `shopping_list_items`
-ADD INDEX `ix_shopping_list_items_shopping_list_id`(`shopping_list_id`);
-
-ALTER TABLE `shopping_list_items`
-ADD CONSTRAINT `fk_shopping_list_items_product_id`
-FOREIGN KEY (`product_id`) REFERENCES `products`(`id`);
-
-ALTER TABLE `shopping_list_items`
-ADD INDEX `ix_shopping_list_items_product_id`(`product_id`);
+ALTER TABLE `products`
+ADD INDEX `ix_products_shopping_list_id`(`shopping_list_id`);
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 DROP TABLE IF EXISTS `shopping_lists`;

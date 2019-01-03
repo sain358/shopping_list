@@ -29,7 +29,7 @@ public class AddShoppingListValidator {
     private Optional<ShoppingListError> validateDuplicateTitle (User user, String title){
         Optional<ShoppingList> shoppingListOptional = shoppingListRepository.findByUserAndTitle(user, title);
         if (shoppingListOptional.isPresent()){
-            return Optional.of(new ShoppingListError("title", "This title already exists!"));
+            return Optional.of(new ShoppingListError("title", "This Shopping List already exists!"));
         }
         return Optional.empty();
     }

@@ -1,23 +1,29 @@
 package shoppinglist.domains;
 
-//import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "products")
 public class Product {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @ManyToOne/*(cascade = {CascadeType.ALL})*/
+    @JoinColumn(name = "shopping_list_id", nullable = false)
+    private ShoppingList shoppingList;
 
     public Long getId() {
         return id;
@@ -41,5 +47,50 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public ShoppingList getShoppingList() {
+        return shoppingList;
+    }
+
+    public void setShoppingList(ShoppingList shoppingList) {
+        this.shoppingList = shoppingList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) &&
+                Objects.equals(title, product.title) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(quantity, product.quantity) &&
+                Objects.equals(shoppingList, product.shoppingList);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, title, description, quantity, shoppingList);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", shoppingList=" + shoppingList +
+                '}';
     }
 }

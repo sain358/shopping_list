@@ -4,13 +4,16 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import shoppinglist.database.ProductRepository;
 import shoppinglist.domains.Product;
+import shoppinglist.domains.ShoppingList;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
+@Transactional
 public class ProductRepositoryImpl implements ProductRepository {
 
     @Autowired
@@ -38,9 +41,10 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProducts(ShoppingList shoppingList) {
         List<Product> products = sessionFactory.getCurrentSession().
                 createCriteria(Product.class).
+                add(Restrictions.eq("shoppingList", shoppingList)).
                 list();
         return products;
     }

@@ -99,9 +99,9 @@ public class ShoppingListConsoleApp {
         while (true) {
             String menuNumber = shoppingListMenu.execute();
             if (menuNumber.equals("1")) {
-                printProductView.execute();
+                printProductView.execute(shoppingList);
             } else if (menuNumber.equals("2")) {
-                addProductView.execute();
+                addProductView.execute(shoppingList);
             } else if (menuNumber.equals("3")) {
                 removeProductView.execute();
             } else if (menuNumber.equals("4")) {

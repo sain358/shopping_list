@@ -3,6 +3,7 @@ package shoppinglist.database.jdbc;
 import org.springframework.stereotype.Component;
 import shoppinglist.database.ProductRepository;
 import shoppinglist.domains.Product;
+import shoppinglist.domains.ShoppingList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,7 +72,7 @@ public class MySQLProductRepository extends JDBCConnection implements ProductRep
     }
 
     @Override
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProducts(ShoppingList shoppingList) {
         List<Product> products = new ArrayList<>();
         Connection connection = getConnection();
         try {

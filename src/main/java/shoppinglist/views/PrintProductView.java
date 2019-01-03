@@ -2,6 +2,7 @@ package shoppinglist.views;
 
 import org.springframework.stereotype.Component;
 import shoppinglist.domains.Product;
+import shoppinglist.domains.ShoppingList;
 import shoppinglist.services.ShoppingListError;
 import shoppinglist.services.products.getAll.GetAllProductsRequest;
 import shoppinglist.services.products.getAll.GetAllProductsResponse;
@@ -10,7 +11,7 @@ import shoppinglist.services.products.getAll.GetAllProductsService;
 import java.util.List;
 
 @Component
-public class PrintProductView implements View {
+public class PrintProductView {
 
     private GetAllProductsService getAllProductsService;
 
@@ -18,9 +19,8 @@ public class PrintProductView implements View {
         this.getAllProductsService = getAllProductsService;
     }
 
-    @Override
-    public void execute() {
-        GetAllProductsRequest getAllProductsRequest = new GetAllProductsRequest();
+    public void execute(ShoppingList shoppingList) {
+        GetAllProductsRequest getAllProductsRequest = new GetAllProductsRequest(shoppingList);
         GetAllProductsResponse getAllProductsResponse = getAllProductsService.execute(getAllProductsRequest);
 
         List<ShoppingListError> shoppingListErrors = getAllProductsResponse.getShoppingListErrors();
@@ -34,14 +34,14 @@ public class PrintProductView implements View {
             System.out.println(
                     "ID: " + product.getId() +
                             "; Title: " + product.getTitle() +
-                            "; Description: " + product.getDescription()
+                            "; Description: " + product.getDescription() +
+                            "; Quantity: " + product.getQuantity()
             );
         }
         System.out.println("-------------------------");
     }
 
 
-    @Override
     public void printErrors(List<ShoppingListError> shoppingListErrors) {
         for (ShoppingListError shoppingListError : shoppingListErrors) {
             System.out.println(shoppingListError.getDescription());

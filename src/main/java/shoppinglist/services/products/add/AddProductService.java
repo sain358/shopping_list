@@ -28,6 +28,8 @@ public class AddProductService {
         Product product = new Product();
         product.setTitle(request.getProductTitle());
         product.setDescription(request.getProductDescription());
+        product.setQuantity(request.getQuantity());
+        product.setShoppingList(request.getShoppingList());
         productRepository.addProduct(product);
         return new AddProductResponse(shoppingListErrors);
     }

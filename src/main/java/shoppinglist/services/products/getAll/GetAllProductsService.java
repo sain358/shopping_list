@@ -21,9 +21,9 @@ public class GetAllProductsService {
     private GetAllProductsValidator validator;
 
 
-    public GetAllProductsResponse execute(GetAllProductsRequest getAllProductsRequest) {
-        List<Product> products = db.getAllProducts();
-        List<ShoppingListError> shoppingListErrors = validator.validate(getAllProductsRequest);
+    public GetAllProductsResponse execute(GetAllProductsRequest request) {
+        List<Product> products = db.getAllProducts(request.getShoppingList());
+        List<ShoppingListError> shoppingListErrors = validator.validate(request);
         if (!shoppingListErrors.isEmpty()) {
             return new GetAllProductsResponse(products, shoppingListErrors);
         }

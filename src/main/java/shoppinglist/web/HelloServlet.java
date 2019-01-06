@@ -23,23 +23,6 @@ public class HelloServlet extends HttpServlet {
         out.println("<h1>" + "PARAMETER " + parameter1 + "</h1>");
         out.println("<h1>" + "PARAMETER " + parameter2 + "</h1>");
 
-//        if (parameter3.equals("printproducts")) {
-//            GetAllProductsService getAllProductsService = new GetAllProductsService();
-//            GetAllProductsRequest getAllProductsRequest = new GetAllProductsRequest();
-//            GetAllProductsResponse getAllProductsResponse = getAllProductsService.execute(getAllProductsRequest);
-//
-//            out.println("<h1>-------------------------</h1>");
-//            out.println("This is Your shopping list:");
-//            for (Product product : getAllProductsResponse.getProducts()) {
-//                out.println(
-//                        "<h1>" + "ID: " + product.getId() +
-//                                "; Title: " + product.getTitle() +
-//                                "; Description: " + product.getDescription() +
-//                                "</h1>"
-//                );
-//            }
-//            System.out.println("-------------------------");
-//        }
     }
 
 }

@@ -23,37 +23,37 @@ public class UserController {
     @Autowired
     private GetUserService getUserService;
 
-    //@ResponseBody
-    @PostMapping(value = "/user/register"/*,
-            consumes = "application/json",
-            produces = "application/json"*/)
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+    @PostMapping("/user/register")
+    public ResponseEntity createUser(@RequestBody UserDTO userDTO) {
 
         UserRegistrationRequest request = new UserRegistrationRequest(
                 userDTO.getLogin(), userDTO.getPassword(), userDTO.getPassword());
         UserRegistrationResponse response = userRegistrationService.execute(request);
 
+        if (!response.getShoppingListErrors().isEmpty()) {
+            return new ResponseEntity<>(response.getShoppingListErrors(), HttpStatus.BAD_REQUEST);
+        }
         userDTO.setId(response.getUser().getId());
         return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
     }
 
     //@ResponseBody
-    @RequestMapping(value = "/user/login",
-            method = RequestMethod.POST/*,
-            consumes = "application/json",
-            produces = "application/json"*/)
-    public ResponseEntity<UserDTO> getUser(@RequestBody UserDTO userDTO) {
+    @RequestMapping(value = "/user/login", method = RequestMethod.POST/*, consumes = "application/json", produces = "application/json"*/)
+    public ResponseEntity getUser(@RequestBody UserDTO userDTO) {
 
         GetUserRequest request = new GetUserRequest(userDTO.getLogin(), userDTO.getPassword());
         GetUserResponse response = getUserService.execute(request);
 
+        if (!response.getShoppingListErrors().isEmpty()) {
+            return new ResponseEntity<>(response.getShoppingListErrors(), HttpStatus.NOT_FOUND);
+        }
         userDTO.setId(response.getUser().getId());
         return ResponseEntity.ok(userDTO);
     }
 
     @GetMapping(value = "/view")
     public String printTest(ModelMap model) {
-        model.addAttribute("message", "Goodbye, XML!");
+        model.addAttribute("message", "You see '.jpa' page!");
         return "noXml";
     }
 }

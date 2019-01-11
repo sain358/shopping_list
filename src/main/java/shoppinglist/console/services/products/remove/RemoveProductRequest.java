@@ -1,15 +1,21 @@
 package shoppinglist.console.services.products.remove;
 
-public class RemoveProductRequest {
+import shoppinglist.console.domains.ShoppingList;
 
+public class RemoveProductRequest {
+    private ShoppingList shoppingList;
     private String productTitle;
 
-    public RemoveProductRequest(String productTitle) {
+    public RemoveProductRequest(ShoppingList shoppingList, String productTitle) {
+        this.shoppingList = shoppingList;
         this.productTitle = productTitle;
+    }
+
+    public ShoppingList getShoppingList() {
+        return shoppingList;
     }
 
     public String getProductTitle() {
         return productTitle;
     }
-
 }

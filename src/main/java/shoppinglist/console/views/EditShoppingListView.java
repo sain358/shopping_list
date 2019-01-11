@@ -7,7 +7,7 @@ import shoppinglist.console.domains.User;
 import shoppinglist.console.services.ShoppingListError;
 import shoppinglist.console.services.shoppinglists.get.GetShoppingListRequest;
 import shoppinglist.console.services.shoppinglists.get.GetShoppingListResponse;
-import shoppinglist.console.services.shoppinglists.get.GetShoppinglistService;
+import shoppinglist.console.services.shoppinglists.get.GetShoppingListService;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class EditShoppingListView {
 
     @Autowired
-    private GetShoppinglistService getShoppinglistService;
+    private GetShoppingListService getShoppingListService;
 
     public Optional<ShoppingList> execute(User user) {
         Scanner scanner = new Scanner(System.in);
@@ -27,7 +27,7 @@ public class EditShoppingListView {
         System.out.println("-------------------------");
 
         GetShoppingListRequest request = new GetShoppingListRequest(user, shoppingListTitle);
-        GetShoppingListResponse response = getShoppinglistService.execute(request);
+        GetShoppingListResponse response = getShoppingListService.execute(request);
 
         List<ShoppingListError> shoppingListErrors = response.getShoppingListErrors();
         if (!shoppingListErrors.isEmpty()) {

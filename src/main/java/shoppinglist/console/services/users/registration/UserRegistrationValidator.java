@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-class UserRegistrationValidator {
+public class UserRegistrationValidator {
 
     @Autowired
     private UserRepository userRepository;

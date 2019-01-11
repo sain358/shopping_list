@@ -1,23 +1,21 @@
 package shoppinglist.console.services;
 
-import org.springframework.stereotype.Component;
-
 public class ShoppingListError {
 
-    private String field;
+    private String pointer;
     private String description;
 
-    public ShoppingListError(String field, String description) {
-        this.field = field;
+    public ShoppingListError(String pointer, String description) {
+        this.pointer = pointer;
         this.description = description;
     }
 
-    public String getField() {
-        return field;
+    public String getPointer() {
+        return pointer;
     }
 
-    public void setField(String field) {
-        this.field = field;
+    public void setPointer(String pointer) {
+        this.pointer = pointer;
     }
 
     public String getDescription() {

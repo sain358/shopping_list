@@ -27,7 +27,8 @@ public class RemoveProductService {
         if (!shoppingListErrors.isEmpty()) {
             return new RemoveProductResponse(shoppingListErrors);
         }
-        Optional<Product> foundProduct = db.findProductByTitle(removeProductRequest.getProductTitle());
+        Optional<Product> foundProduct = db.findByShoppingListAndTitle(
+                removeProductRequest.getShoppingList(),removeProductRequest.getProductTitle());
         db.removeProduct(foundProduct.get());
         return new RemoveProductResponse(shoppingListErrors);
     }

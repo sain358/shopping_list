@@ -3,6 +3,7 @@ package shoppinglist.console.services.shoppinglists.remove;
 import shoppinglist.console.domains.User;
 
 public class RemoveShoppingListRequest {
+
     private User user;
     private String title;
 

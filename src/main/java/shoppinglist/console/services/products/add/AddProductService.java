@@ -21,17 +21,17 @@ public class AddProductService {
     private AddProductValidator validator;
 
     public AddProductResponse execute(AddProductRequest request) {
+        Product product = new Product();
         List<ShoppingListError> shoppingListErrors = validator.validate(request);
         if (!shoppingListErrors.isEmpty()) {
-            return new AddProductResponse(shoppingListErrors);
+            return new AddProductResponse(product, shoppingListErrors);
         }
-        Product product = new Product();
         product.setTitle(request.getProductTitle());
         product.setDescription(request.getProductDescription());
         product.setQuantity(request.getQuantity());
         product.setShoppingList(request.getShoppingList());
         productRepository.addProduct(product);
-        return new AddProductResponse(shoppingListErrors);
+        return new AddProductResponse(product, shoppingListErrors);
     }
 
 }

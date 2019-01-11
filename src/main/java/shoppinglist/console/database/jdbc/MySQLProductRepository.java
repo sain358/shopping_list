@@ -48,7 +48,7 @@ public class MySQLProductRepository extends JDBCConnection implements ProductRep
     }
 
     @Override
-    public Optional<Product> findProductByTitle(String title) {
+    public Optional<Product> findByShoppingListAndTitle(ShoppingList shoppingList, String title) {
         Connection connection = getConnection();
         try {
             PreparedStatement preparedStatement =

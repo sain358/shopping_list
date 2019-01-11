@@ -22,7 +22,7 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findProductByTitle(String title) {
+    public Optional<Product> findByShoppingListAndTitle(ShoppingList shoppingList, String title) {
         for (Product product : products) {
             if (product.getTitle().equals(title)){
                 return Optional.of(product);

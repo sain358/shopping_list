@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Component
 @Transactional
-public class GetShoppinglistService {
+public class GetShoppingListService {
 
     @Autowired
     private ShoppingListRepository shoppingListRepository;

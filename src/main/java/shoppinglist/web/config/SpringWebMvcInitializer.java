@@ -30,10 +30,10 @@ public class SpringWebMvcInitializer implements WebApplicationInitializer {
         /// Register and map the dispatcher servlet
         ServletRegistration.Dynamic dispatcher =
                 servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
-//        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/user/register");
-        dispatcher.addMapping("/user/login");
-        dispatcher.addMapping("/view");
+        dispatcher.setLoadOnStartup(1);
+        dispatcher.addMapping("/");
+
+//        dispatcher.addMapping("/view");
 
     }
 }

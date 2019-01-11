@@ -32,10 +32,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findProductByTitle(String title) {
+    public Optional<Product> findByShoppingListAndTitle(ShoppingList shoppingList, String title) {
         Product product = (Product) sessionFactory.getCurrentSession().
                 createCriteria(Product.class).
                 add(Restrictions.eq("title", title)).
+                add(Restrictions.eq("shoppingList", shoppingList)).
                 uniqueResult();
         return Optional.ofNullable(product);
     }

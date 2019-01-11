@@ -33,7 +33,7 @@ public class GetUserValidator {
         Optional<User> userOptional = userRepository.findByLoginAndPassword(login, password);
 
         if (!userOptional.isPresent()) {
-            return Optional.of(new ShoppingListError("", "Wrong LOGIN or PASSWORD!"));
+            return Optional.of(new ShoppingListError("authorisation", "Wrong LOGIN or PASSWORD!"));
         }
         return Optional.empty();
 

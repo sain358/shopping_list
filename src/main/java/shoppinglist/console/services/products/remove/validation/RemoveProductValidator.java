@@ -17,7 +17,7 @@ public class RemoveProductValidator {
     public List<ShoppingListError> validate(RemoveProductRequest removeProductRequest) {
         List<ShoppingListError> shoppingListErrors = new ArrayList<>();
 
-        noSuchProductRule.execute(removeProductRequest.getProductTitle()).ifPresent(shoppingListErrors::add);
+        noSuchProductRule.execute(removeProductRequest.getShoppingList(), removeProductRequest.getProductTitle()).ifPresent(shoppingListErrors::add);
 
         return shoppingListErrors;
     }

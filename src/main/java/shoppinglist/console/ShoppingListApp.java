@@ -38,7 +38,7 @@ public class ShoppingListApp {
             } else if (menuNumber.equals("2")) {
                 addProductView.execute(shoppingList);
             } else if (menuNumber.equals("3")) {
-                removeProductView.execute();
+                removeProductView.execute(shoppingList);
             } else if (menuNumber.equals("4")) {
                 System.out.println("-------------------------");
                 System.out.println("Goodbye!");

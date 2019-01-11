@@ -12,7 +12,7 @@ public interface ProductRepository {
 
     void removeProduct(Product product);
 
-    Optional<Product> findProductByTitle(String title);
+    Optional<Product> findByShoppingListAndTitle(ShoppingList shoppingList, String title);
 
     List<Product> getAllProducts(ShoppingList shoppingList);
 }

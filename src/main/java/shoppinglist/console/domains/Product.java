@@ -21,7 +21,7 @@ public class Product {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @ManyToOne/*(cascade = {CascadeType.ALL})*/
+    @ManyToOne
     @JoinColumn(name = "shopping_list_id", nullable = false)
     private ShoppingList shoppingList;
 

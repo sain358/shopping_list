@@ -23,7 +23,7 @@ public class EmptyTitleRuleTest {
         Optional<ShoppingListError> error = rule.execute("       ");
 
         assertTrue(error.isPresent());
-        assertEquals("title", error.get().getField());
+        assertEquals("title", error.get().getPointer());
         assertEquals("Empty title not allowed!", error.get().getDescription());
     }
 

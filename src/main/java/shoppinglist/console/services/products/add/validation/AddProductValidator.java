@@ -17,10 +17,14 @@ public class AddProductValidator {
     @Autowired
     private UniqueProductRule uniqueProductRule;
 
+    @Autowired
+    private ShoppingListExistenceAddRule shoppingListExistenceAddRule;
+
     public List<ShoppingListError> validate(AddProductRequest addProductRequest) {
         List<ShoppingListError> shoppingListErrors = new ArrayList<>();
 
         emptyTitleRule.execute(addProductRequest.getProductTitle()).ifPresent(shoppingListErrors::add);
+        shoppingListExistenceAddRule.execute(addProductRequest).ifPresent(shoppingListErrors::add);
         uniqueProductRule.execute(addProductRequest).ifPresent(shoppingListErrors::add);
 
         return shoppingListErrors;

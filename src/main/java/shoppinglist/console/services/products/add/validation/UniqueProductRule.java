@@ -16,17 +16,13 @@ public class UniqueProductRule {
     private ProductRepository productRepository;
 
     public Optional<ShoppingListError> execute(AddProductRequest request) {
-
         Optional<Product> productOptional = productRepository.findByShoppingListAndTitle(
                 request.getShoppingList(), request.getProductTitle());
-
         if (productOptional.isPresent()) {
             ShoppingListError shoppingListError = new ShoppingListError("product", "This product already exists!");
             return Optional.of(shoppingListError);
         }
         return Optional.empty();
-
     }
-
 
 }

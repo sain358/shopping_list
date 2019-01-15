@@ -1,5 +1,6 @@
 package shoppinglist.web.config;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
@@ -12,6 +13,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+@Component
 public class SpringWebMvcInitializer implements WebApplicationInitializer {
 
     @Override
@@ -37,28 +39,3 @@ public class SpringWebMvcInitializer implements WebApplicationInitializer {
 
     }
 }
-
-//public class SpringWebMvcInitializer extends AbstractDispatcherServletInitializer {
-//
-//    @Override
-//    protected WebApplicationContext createRootApplicationContext() {
-//        AnnotationConfigWebApplicationContext applicationContext =
-//                new AnnotationConfigWebApplicationContext();
-//        applicationContext.register(SpringConfig.class);
-//        return applicationContext;
-//    }
-//
-//    @Override
-//    protected WebApplicationContext createServletApplicationContext() {
-//        AnnotationConfigWebApplicationContext applicationContext =
-//                new AnnotationConfigWebApplicationContext();
-//        applicationContext.register(SpringWebMvcConfig.class);
-//        return applicationContext;
-//    }
-//
-//    @Override
-//    protected String[] getServletMappings() {
-//        return new String[0];
-//    }
-//
-//}

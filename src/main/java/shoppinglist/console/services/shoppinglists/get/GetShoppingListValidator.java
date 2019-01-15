@@ -3,6 +3,7 @@ package shoppinglist.console.services.shoppinglists.get;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import shoppinglist.console.database.ShoppingListRepository;
+import shoppinglist.console.database.UserRepository;
 import shoppinglist.console.domains.ShoppingList;
 import shoppinglist.console.domains.User;
 import shoppinglist.console.services.ShoppingListError;
@@ -20,9 +21,13 @@ public class GetShoppingListValidator {
     @Autowired
     private ShoppingListRepository shoppingListRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public List<ShoppingListError> validate(GetShoppingListRequest request) {
         List<ShoppingListError> errors = new ArrayList<>();
         validateShoppingListExistence(request.getUser(), request.getTitle()).ifPresent(errors::add);
+        validateUser(request.getUser()).ifPresent(errors::add);
         return errors;
     }
 
@@ -34,6 +39,14 @@ public class GetShoppingListValidator {
         }
         return Optional.empty();
 
+    }
+
+    private Optional<ShoppingListError> validateUser(User user) {
+        Optional<User> userOptional = userRepository.findByLoginAndPassword(user.getLogin(), user.getPassword());
+        if (userOptional.isPresent() && !user.equals(userOptional.get())) {
+            return Optional.of(new ShoppingListError("user", "No such user found!"));
+        }
+        return Optional.empty();
     }
 
 }

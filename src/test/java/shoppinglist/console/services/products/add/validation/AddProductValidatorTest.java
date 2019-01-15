@@ -21,6 +21,12 @@ public class AddProductValidatorTest {
     @Mock
     private EmptyTitleRule emptyTitleRule;
 
+    @Mock
+    private UniqueProductRule uniqueProductRule;
+
+    @Mock
+    private ShoppingListExistenceAddRule shoppingListExistenceAddRule;
+
     @InjectMocks
     private AddProductValidator validator = new AddProductValidator();
 

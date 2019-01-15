@@ -21,22 +21,17 @@ public class GetUserValidator {
 
     public List<ShoppingListError> validate(GetUserRequest request) {
         List<ShoppingListError> errors = new ArrayList<>();
-
         Optional<ShoppingListError> errorOptional = validateUserCredentials(request.getLogin(), request.getPassword());
         errorOptional.ifPresent(errors::add);
-
         return errors;
     }
 
     private Optional<ShoppingListError> validateUserCredentials(String login, String password) {
-
         Optional<User> userOptional = userRepository.findByLoginAndPassword(login, password);
-
         if (!userOptional.isPresent()) {
             return Optional.of(new ShoppingListError("authorisation", "Wrong LOGIN or PASSWORD!"));
         }
         return Optional.empty();
-
     }
 
 }
